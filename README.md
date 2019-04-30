@@ -1,42 +1,59 @@
-# Project Restful Dogs
-
-A student that completes this project shows that they can:
-* troubleshoot running services using both system and programmatically generated logs
-* implement server sided routing and rendering for a Spring REST service
-* implement industry standard exception handling including user friendly exception messages
+# Project RESTDogs
 
 # Introduction
-
-We worked with dogs in plain Java. This project returns dog data using Rest APIs with appropriate exception handling, logging, and make use of Server Side Rendering.
+Develop a simple REST Web application to work with data about dogs
+- [x] Dogs have an auto generated id, breed name, average weight, boolean that true if the breed of dog is appropriate for apartment living otherwise false.
 
 # Instructions
+Create a Java RESTful API Web application using Web, DevTools, H2, hateoas, and Jackson and JPA.  
 
-The provided application exposes the following endpoints
-* /dogs -> returns a list of all dogs
-* /dogs/{id} -> returns a single dog based off of its id number
-* /dogs/breeds/{breed} -> returns all dogs of the given breed
-    
-Starting with the dogs-initial application,
+## Data
+- [x] Seed the data with the following  
 
-Add appropriate exception handling routines. Required exceptions to handle are when
-  * a resource is not found
-  * the wrong data type is used for a path variable
-  * a non-handled endpoint is accessed (a URL not found exception)
+```java
+new Dogs("Springer", 50, false);
+new Dogs("Bulldog", 50, true);
+new Dogs("Collie", 50, false);
+new Dogs("Boston Terrie", 35, true);
+new Dogs("Corgi", 35, true);
+```
 
------------------------------------------------------------------------------------
+## Expose the following endpoints
 
-The following is being removed from MVP due to lack of coverage during class!
+### Get
 
-Add appropriate logging routines. Required logging include
-  * Activating actuator endpoints
-  * Tomcat logging routed to a separate log file
-  * Custom logging under each Get endpoint saying the endpoint has been accessed
-    * should only go to console
-    * for example when a clients calls /dogs log should say "/dogs accessed"
+- [x] /dogs/breeds -> returns a listing of all dogs ordered by breed   
+- [x] /dogs/weight -> returns a listing of all dogs ordered by average weight  
+- [x] /dogs/breeds/{breed} -> returns dogs of just that breed  
+- [x] /dogs/apartment -> returns dogs suitable for apartments    
 
- Add server side rendering using Thymeleaf to 
-  * display all dogs ordered by breed
-  * display all dogs suitable for apartments ordered by breed
+### Put
 
- Stretch Goal
-  * Add a date and time stamp to your custom logging
+- [x] /dogs/{id} -> adds or update if already present the dog with id value id  
+
+### Post  
+
+- [x] /dogs -> adds the dog
+
+### Delete
+
+- [x] /dogs/{id} -> deletes the dog with that id
+
+## Recommended Steps
+1. Build a new project . 
+2. Add properties (DEBUG logs) and dependencies (Jackson) . 
+3. Create the data class . 
+4. Create the SeedDatabase class . 
+5. Create the repository class . 
+6. Create the ResourceAssembler class . 
+7. Create the Controller class . 
+8. Create the ItemNotFoundException class .  
+8. Now you can finally expose your endpoints!
+
+## Stretch goal and not necessary for MVP  
+
+### Delete  
+
+- [x] /dogs/breeds/{breed} -> deletes that dog breed
+
+Throughout the project, when adding dogs make sure the **breed names are unique**
