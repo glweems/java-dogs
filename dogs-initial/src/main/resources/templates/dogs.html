@@ -8,18 +8,21 @@
 <section class="hero is-primary">
     <div class="hero-body">
         <h1 class="title">cute doggy table</h1>
-        <h6 class="subtile">they're all cute</h6>
     </div>
 </section>
 <section class="container">
     <table class="table">
         <tr>
-            <th>Name</th>
+            <th>ID</th>
+            <th>Breed</th>
             <th>Weight</th>
+            <th>Good For Apt.</th>
         </tr>
         <tr th:each="dog : ${dogList}">
             <td th:text="${dog.id}"/>
             <td th:text="${dog.breed}"/>
+            <td th:text="${dog.weight}"/>
+            <td th:text="${dog.apartmentSuitable}"/>
         </tr>
     </table>
 </section>
