@@ -21,37 +21,41 @@ public class DogController
 {
 
     private static final Logger logger = LoggerFactory.getLogger(Dog.class);
-    // localhost:8080/dogs/alldogs
+    // localhost:6969/dogs/alldogs
     @GetMapping(value = "/dogs")
     public ResponseEntity<?> getAllDogs()
     {
-        logger.info("/All Dogs Accessed");
+        logger.info("message: all the doggies");
         return new ResponseEntity<>(ProjectrestdogsApplication.ourDogList.dogList, HttpStatus.OK);
     }
 
-    // localhost:8080/dogs/{id}
+    // localhost:6969/dogs/{id}
     @GetMapping(value = "/{id}")
     public ResponseEntity<?> getDogDetail(@PathVariable long id)
     {
         Dog rtnDog;
-        logger.info("/dog " + id + " Accessed");
-        if ((ProjectrestdogsApplication.ourDogList.findDog(e -> (e.getId()) == id)) == null)
-        {
-            throw new ResourceNotFoundException("Dog with id " + id + " not found");
-        } else
-        {
+        logger.info("message: " + id + " doggy viewed homie");
+
+        if ((ProjectrestdogsApplication.ourDogList.findDog(e -> (e.getId()) == id)) == null) {
+
+            throw new ResourceNotFoundException(id + "aint no doggy");
+
+        } else {
+
             rtnDog = ProjectrestdogsApplication.ourDogList.findDog(e -> (e.getId() == id));
         }
         return new ResponseEntity<>(rtnDog, HttpStatus.OK);
     }
 
-    // localhost:8080/dogs/breeds/{breed}
+    // localhost:6969/dogs/breeds/{breed}
     @GetMapping(value = "/breeds/{breed}")
-    public ResponseEntity<?> getDogBreeds (@PathVariable String breed)
-    {
+    public ResponseEntity<?> getDogBreeds (@PathVariable String breed) {
         ArrayList<Dog> rtnDogs = ProjectrestdogsApplication.ourDogList.
                 findDogs(d -> d.getBreed().toUpperCase().equals(breed.toUpperCase()));
-        logger.info("/dog " + breed + " Accessed");
+
+        logger.info("message:" + breed + " is the doggy you lookin at homie");
+
         return new ResponseEntity<>(rtnDogs, HttpStatus.OK);
+
     }
 }
