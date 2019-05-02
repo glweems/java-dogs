@@ -1,0 +1,27 @@
+<html xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Doggy Table</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.4/css/bulma.min.css" />
+</head>
+<body>
+<section class="hero is-primary">
+    <div class="hero-body">
+        <h1 class="title">cute doggy table</h1>
+        <h6 class="subtile">they're all cute</h6>
+    </div>
+</section>
+<section class="container">
+    <table class="table">
+        <tr>
+            <th>Name</th>
+            <th>Weight</th>
+        </tr>
+        <tr th:each="dog : ${dogList}">
+            <td th:text="${dog.id}"/>
+            <td th:text="${dog.breed}"/>
+        </tr>
+    </table>
+</section>
+</body>
+</html>

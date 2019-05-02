@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.ArrayList;
 
 import org.slf4j.Logger;
+import org.springframework.web.servlet.ModelAndView;
 
 @RestController
 @RequestMapping("/dogs")
@@ -58,4 +59,16 @@ public class DogController
         return new ResponseEntity<>(rtnDogs, HttpStatus.OK);
 
     }
+
+    // localhost:2019/dog/table
+    @GetMapping(value = "/table")
+    public ModelAndView displayDogTable()
+    {
+        ModelAndView mav = new ModelAndView();
+        mav.setViewName("dogs");
+        mav.addObject("dogList", ProjectrestdogsApplication.ourDogList.dogList);
+        return mav;
+    }
+
+
 }
